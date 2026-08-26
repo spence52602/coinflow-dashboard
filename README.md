@@ -3,16 +3,19 @@
 A payments-dashboard homepage rebuilt pixel-faithfully from a Figma comp, shipped as a
 production Next.js app. **Live:** https://coinflow-app-jade.vercel.app
 
-Two complete implementations of the same rendered output live in this repo:
+> **Building it?** The licensed typefaces are not in this repo. See
+> [Fonts](#fonts) first — `npm run build` fails at the font import without them.
+> `npm test` runs clean regardless.
 
-| Directory | Stack | Status |
-| --- | --- | --- |
-| `src/` | **Tailwind v4 + shadcn/ui (Radix primitives, cva)** | the app that builds and deploys |
-| `src-css-modules/` | CSS Modules + design-token custom properties | kept as a reference artifact, excluded from the build |
+This was built twice. The first pass used CSS Modules with design-token custom
+properties; the shipped app is a strict syntax migration of it to Tailwind v4 +
+shadcn/ui (Radix primitives, cva). Full-page screenshots at 1728px and 1321px are
+checked into `ref/`, and the shipped app diffs against them at **0.003% of pixels**
+(three sub-glyph anti-aliasing clusters, documented below).
 
-The Tailwind port was executed as a strict syntax migration: full-page screenshots at
-1728px and 1321px are checked into `ref/`, and the migrated app diffs against them at
-**0.003% of pixels** (three sub-glyph anti-aliasing clusters, documented below).
+The CSS Modules pass is not in the working tree — it was carrying a duplicate copy
+of the licensed fonts and compiled nothing, so it was removed. It remains in the
+commit history if the comparison is ever wanted.
 
 ## Stack
 
