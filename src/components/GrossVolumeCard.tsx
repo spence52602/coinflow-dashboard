@@ -215,8 +215,12 @@ export function GrossVolumeCard({ volume, initialRange }: GrossVolumeCardProps) 
               y2={PLOT.fade.y + PLOT.fade.h}
             >
               {/* Ground wash under the bars — stops verbatim from the comp. */}
-              <stop stopColor="#fff" stopOpacity="0" />
-              <stop offset="1" stopColor="#2B2B2B" stopOpacity="0.5" />
+              <stop stopColor="var(--paper)" stopOpacity="0" />
+              <stop
+                offset="1"
+                stopColor="var(--bar-weekday)"
+                stopOpacity="0.5"
+              />
             </linearGradient>
           </defs>
 

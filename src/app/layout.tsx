@@ -25,6 +25,10 @@ const acid = localFont({
 export const metadata: Metadata = {
   title: "Coinflow — Merchant Home",
   description: "Coinflow merchant dashboard",
+  /* The one intentional color literal outside tokens.css: this favicon is a
+     data-URI SVG the browser renders in its own chrome, detached from the
+     document, so custom properties have nothing to resolve against. It is an
+     icon asset rather than UI, and its black is --ink by value. */
   icons: {
     icon: [
       {

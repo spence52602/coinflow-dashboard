@@ -17,6 +17,7 @@
   --chrome: #faf9f7;      /* sidebar */
   --solid: #f1f1f1;       /* active segment pill */
   --select: #e5e5e5;      /* active nav row */
+  --scrim: rgba(0, 0, 0, 0.24); /* modal overlay */
 
   /* ---- rules & borders ---- */
   /* One border system: cards rule with --rule, interior dividers with
@@ -39,6 +40,7 @@
   --attn-label: #5b5b5b;
   --attn-sub: #646464;
   --cta-on-dark: #fbfbfb;
+  --track-on-dark: rgba(255, 255, 255, 0.4); /* unfilled progress track on artwork */
   --seg-idle: #5d5d5d;
 
   /* ---- chart ---- */
@@ -48,6 +50,7 @@
   --chart-baseline: #d1d1d1;
   --chart-axis: rgba(0, 0, 0, 0.44);
   --delta-strong: #2b2b2b;
+  --spark-line: rgba(0, 0, 0, 0.55); /* sits between --muted and --subtle by design */
 
   /* ---- shape ---- */
   --r-control: 1px;

@@ -74,7 +74,7 @@ export function StatRow({ stats }: StatRowProps) {
                       >
                         <path
                           d={sparkPath(stat.spark, 90, 26, 5)}
-                          stroke="rgba(0,0,0,.55)"
+                          stroke="var(--spark-line)"
                           strokeWidth="1.5"
                           fill="none"
                           strokeLinecap="round"

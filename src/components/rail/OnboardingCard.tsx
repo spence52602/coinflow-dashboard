@@ -45,7 +45,7 @@ export function OnboardingCard({ onboarding }: OnboardingCardProps) {
               key={i}
               className={cn(
                 "h-[0.8125rem] flex-1",
-                i < stepsComplete ? "bg-inverse" : "bg-[rgba(255,255,255,0.4)]",
+                i < stepsComplete ? "bg-inverse" : "bg-track-on-dark",
               )}
             />
           ))}

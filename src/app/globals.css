@@ -19,6 +19,7 @@
   --color-chrome: var(--chrome);
   --color-solid: var(--solid);
   --color-select: var(--select);
+  --color-scrim: var(--scrim);
 
   /* rules & borders */
   --color-rule: var(--rule);
@@ -38,6 +39,7 @@
   --color-attn-label: var(--attn-label);
   --color-attn-sub: var(--attn-sub);
   --color-cta-on-dark: var(--cta-on-dark);
+  --color-track-on-dark: var(--track-on-dark);
   --color-seg-idle: var(--seg-idle);
 
   /* chart */
@@ -47,6 +49,7 @@
   --color-chart-baseline: var(--chart-baseline);
   --color-chart-axis: var(--chart-axis);
   --color-delta-strong: var(--delta-strong);
+  --color-spark-line: var(--spark-line);
 
   /* shape */
   --radius-control: var(--r-control);
