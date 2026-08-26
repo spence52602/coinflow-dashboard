@@ -20,6 +20,7 @@ export default function Page() {
         purchases={data.purchases}
         volume={data.volume}
         period={data.period}
+        attention={data.attention}
       />
       <div className="flex min-w-0 flex-1 flex-col">
         <PageHeader
