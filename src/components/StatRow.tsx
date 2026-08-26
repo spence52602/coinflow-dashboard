@@ -1,5 +1,12 @@
 "use client";
 
+/**
+ * The row of summary stats beneath the volume card.
+ *
+ * Each tile pairs a figure with a sparkline; the path geometry itself lives
+ * in lib/spark so it can be tested without rendering a component.
+ */
+
 import type { StatSummary } from "@/data/types";
 import { IconArrowUpRight } from "./icons";
 import { sparkPath } from "@/lib/spark";

@@ -1,3 +1,9 @@
+/**
+ * Rail card listing the items blocking the merchant.
+ *
+ * The count shown here is the same value that feeds the sidebar's exceptions
+ * badge, so the two can never disagree.
+ */
 import type { Attention, AttentionItem } from "@/data/types";
 import {
   IconAttnAch,

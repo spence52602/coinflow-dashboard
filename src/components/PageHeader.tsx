@@ -1,3 +1,9 @@
+/**
+ * Top of the main column — greeting, period summary, and section tabs.
+ *
+ * The tabs are presentational. The rebuild has a single route, so they carry
+ * the comp's active state without routing anywhere.
+ */
 import type { Attention, Period, VolumeSummary } from "@/data/types";
 import { IconChevron } from "./icons";
 import { HeaderActions } from "./HeaderActions";

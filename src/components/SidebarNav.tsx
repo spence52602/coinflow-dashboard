@@ -1,5 +1,13 @@
 "use client";
 
+/**
+ * The navigation tree inside the sidebar.
+ *
+ * Rows are an accordion rather than links: this is a static rebuild, so
+ * sections expand in place and nothing routes. The exceptions count is the
+ * one live value threaded through, so its badge always agrees with the rail.
+ */
+
 import * as React from "react";
 import type { Attention } from "@/data/types";
 import {

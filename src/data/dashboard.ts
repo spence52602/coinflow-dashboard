@@ -1,3 +1,10 @@
+/**
+ * The dashboard's mock payload and its single accessor.
+ *
+ * Everything the UI renders originates here, shaped to match what a real
+ * summary + timeseries API pair would return, so swapping in a live source
+ * is a change to getDashboardData alone.
+ */
 import type { DashboardData, VolumePoint } from "./types";
 import rawSeries from "./volume-series.json";
 

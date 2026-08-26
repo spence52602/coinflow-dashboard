@@ -1,5 +1,12 @@
 "use client";
 
+/**
+ * Action cluster in the page header — export, copy summary, report.
+ *
+ * Client-side because each action writes a file or the clipboard. The header
+ * that hosts it stays a server component.
+ */
+
 import { ArrowUpRight } from "lucide-react";
 import type { Attention, Period, VolumeSummary } from "@/data/types";
 import {

@@ -1,3 +1,6 @@
+/**
+ * Rail card for the next scheduled payout — amount and arrival date.
+ */
 import type { Payout } from "@/data/types";
 import { formatCurrency } from "@/data/format";
 import { IconCtaArrow } from "../icons";

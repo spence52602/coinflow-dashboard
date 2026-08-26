@@ -1,5 +1,12 @@
 "use client";
 
+/**
+ * The command palette behind the sidebar's search trigger.
+ *
+ * Filters the payload the page already rendered; there is no backend to
+ * query, so every result is derived client-side from data in memory.
+ */
+
 import * as React from "react";
 import Image from "next/image";
 import { ArrowUpRight, Download } from "lucide-react";

@@ -1,5 +1,12 @@
 "use client";
 
+/**
+ * Overflow menu on the Recent purchases card.
+ *
+ * Every item is a client-side action — CSV export, clipboard copy — which is
+ * why this is a client component while the card hosting it is not.
+ */
+
 import { ArrowUpRight, Copy, Download } from "lucide-react";
 import type { DashboardData } from "@/data/types";
 import { formatCurrency } from "@/data/format";

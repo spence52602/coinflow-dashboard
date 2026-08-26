@@ -1,7 +1,13 @@
+/**
+ * CSV and clipboard helpers backing the card menus.
+ *
+ * All browser-side: each builder assembles its rows in memory and hands them
+ * to a Blob download. Nothing here touches the network, and no export is
+ * generated server-side.
+ */
 import type { DashboardData, VolumePoint } from "@/data/types";
 import { formatCurrency } from "@/data/format";
 
-/** Client-side CSV/clipboard helpers backing the menu actions. */
 
 function downloadBlob(filename: string, mime: string, content: string) {
   const blob = new Blob([content], { type: mime });

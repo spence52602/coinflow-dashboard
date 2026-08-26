@@ -1,3 +1,11 @@
+/**
+ * Merchant home — the app's only route.
+ *
+ * Reads the dashboard payload once on the server and composes the three
+ * columns: sidebar, main scroll area, and the right-hand rail. Children
+ * receive already-shaped slices via props, so this stays the single place
+ * that knows where the data came from.
+ */
 import { getDashboardData } from "@/data/dashboard";
 import { Sidebar } from "@/components/Sidebar";
 import { PageHeader } from "@/components/PageHeader";

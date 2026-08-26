@@ -1,5 +1,14 @@
 "use client";
 
+/**
+ * Gross-volume card: headline figure, range toggle, and the bar chart.
+ *
+ * The plot is hand-laid rather than drawn by a chart library. Every constant
+ * in PLOT is measured off the Figma frame — bar pitch, run-in, gridline
+ * spacing, the dollars-per-pixel scale — and a charting library would
+ * override exactly those values in favor of its own layout engine.
+ */
+
 import * as React from "react";
 import type { VolumePoint, VolumeRange, VolumeSummary } from "@/data/types";
 import { formatAxisK, formatCurrency, formatTick } from "@/data/format";

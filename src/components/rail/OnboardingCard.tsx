@@ -1,3 +1,9 @@
+/**
+ * Rail card tracking onboarding progress.
+ *
+ * The step track is drawn as equal flex segments rather than a percentage
+ * bar, so a partially complete step reads as discrete rather than smeared.
+ */
 import type { Onboarding } from "@/data/types";
 import { IconClose, IconCtaArrow } from "../icons";
 import { cn } from "@/lib/utils";

@@ -1,3 +1,10 @@
+/**
+ * Left chrome: merchant switcher, search trigger, navigation, account footer.
+ *
+ * Composition only. Each interactive part is its own client component, which
+ * is what keeps this a server component instead of shipping the entire
+ * sidebar to the browser.
+ */
 import Image from "next/image";
 import type { Account, Attention, DashboardData, Merchant, Period, VolumeSummary } from "@/data/types";
 import { IconArrowUpRight, IconDocumentation, IconExternal } from "./icons";

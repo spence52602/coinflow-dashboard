@@ -1,3 +1,10 @@
+/**
+ * Root layout — the document shell every route renders inside.
+ *
+ * This is the only place the two licensed local faces are registered with
+ * next/font, so they are self-hosted and preloaded rather than fetched at
+ * runtime. Nothing else in the app declares a font.
+ */
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";

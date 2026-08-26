@@ -1,5 +1,13 @@
 "use client";
 
+/**
+ * Merchant identity control at the top of the sidebar.
+ *
+ * The rebuild carries a single merchant, so this presents the current
+ * account and the comp's switch affordance without a second account to
+ * switch to.
+ */
+
 import * as React from "react";
 import Image from "next/image";
 import { Check, Copy, Plus, Settings2 } from "lucide-react";

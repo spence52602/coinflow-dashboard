@@ -1,3 +1,10 @@
+/**
+ * The Recent purchases card.
+ *
+ * Rows are flex compositions rather than table markup: each one stacks an
+ * avatar, a name/email pair, method, timestamp, and amount at widths taken
+ * from the comp, which table layout would not preserve.
+ */
 import Image from "next/image";
 import type { DashboardData } from "@/data/types";
 import { formatCurrency, formatInt } from "@/data/format";
