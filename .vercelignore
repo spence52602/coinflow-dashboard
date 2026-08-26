@@ -1,0 +1,9 @@
+# Vercel falls back to .gitignore when this file is absent, which would strip
+# the licensed typefaces out of the deployment and break the font loading.
+# This file exists to override that: fonts are excluded from git, not from
+# the deploy.
+node_modules
+.next
+out
+.git
+coverage

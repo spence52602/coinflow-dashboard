@@ -6,3 +6,7 @@ next-env.d.ts
 .vercel
 tw-verify
 coverage
+
+# Licensed typefaces (Swift, Acid Grotesk) — not redistributable.
+# Supply your own licensed copies in src/fonts/ to build.
+src/fonts/*.woff2

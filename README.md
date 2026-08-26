@@ -68,6 +68,23 @@ anti-aliasing against the frame's JPEG-scaled image.
 
 ## Development
 
+### Fonts
+
+Swift and Acid Grotesk are licensed commercial typefaces, so their binaries are
+**not** in this repo. `src/fonts/` is gitignored and the build expects four
+files there:
+
+```
+src/fonts/swift-regular.woff2
+src/fonts/swift-bold.woff2
+src/fonts/acid-grotesk-regular.woff2
+src/fonts/acid-grotesk-medium.woff2
+```
+
+Supply your own licensed copies, or point `localFont` in `src/app/layout.tsx`
+at substitutes. Without them `next build` fails at the font import — that is
+the intended failure, not a misconfiguration.
+
 ```bash
 npm install
 npm run dev            # develop
