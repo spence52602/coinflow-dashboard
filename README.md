@@ -22,6 +22,7 @@ The Tailwind port was executed as a strict syntax migration: full-page screensho
   (ToggleGroup, DropdownMenu, Dialog, cmdk Command, Tooltip), variants via `cva`
 - Self-hosted fonts (`next/font/local`): Swift (serif — headings and aligned figures)
   and Acid Grotesk (sans — interface)
+- **Vitest** (`jsdom`) for the logic layer — see [Tests](#tests)
 
 ## Design system
 
@@ -69,11 +70,38 @@ anti-aliasing against the frame's JPEG-scaled image.
 
 ```bash
 npm install
-npm run dev        # develop
-npm run build      # production build
-npm run typecheck  # tsc --noEmit
-npm run lint       # eslint
+npm run dev            # develop
+npm run build          # production build
+npm run typecheck      # tsc --noEmit
+npm run lint           # eslint
+npm run test           # vitest run
+npm run test:watch     # vitest
+npm run test:coverage  # vitest run --coverage
 ```
+
+## Tests
+
+Vitest, running in `jsdom`. The suite covers the pure logic rather than the
+markup — the places where a silent change would reach a merchant without
+showing up in review:
+
+| Area | Why it's covered |
+|---|---|
+| `data/format.ts` | Every number on screen passes through it; a dropped decimal or a timezone slip is invisible in a diff |
+| `lib/export.ts` | CSV row shape, quoting of comma-bearing fields, and filename sanitisation |
+| `lib/spark.ts` | Sparkline geometry — bounds, segment count, and the flat-series divide-by-zero guard |
+| `lib/utils.ts` | That a later Tailwind class beats an earlier one, which is what makes `className` overrides work |
+
+29 tests; 100% of statements and functions on that surface. The one uncovered
+branch is an unreachable defensive guard in `sparkPath`.
+
+The CSV tests capture Blob contents through a stubbed `URL.createObjectURL`
+rather than asserting on a download, since jsdom never performs one — what
+matters is the bytes that would have been written.
+
+Component rendering is deliberately not covered: the fidelity of this build was
+established forensically against the comp (see Provenance), and snapshot tests
+would pin markup without measuring what that work actually verified.
 
 ## Known render deltas (Tailwind port vs. `ref/`)
 
