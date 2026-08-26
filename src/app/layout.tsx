@@ -62,7 +62,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${swift.variable} ${acid.variable}`}>
       <body>
-        {children}
+        {/* Below sm the dashboard is blurred behind MobileNotice. The blur sits
+            on the content rather than on the note's backdrop: `backdrop-filter`
+            is a compositor effect that some engines decline to paint, and the
+            product must not be readable through the note when that happens.
+            Making this element the containing block for fixed descendants is
+            safe here — the sidebar is static below lg, and Radix portals mount
+            on <body>, outside this wrapper. */}
+        <div className="max-sm:pointer-events-none max-sm:blur-[14px]">
+          {children}
+        </div>
         <MobileNotice />
       </body>
     </html>

@@ -1,5 +1,5 @@
 <svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="99.6429" height="20.7672" viewBox="0 0 99.6429 20.7672" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Coinflow Lock up" filter="url(#filter0_n_0_152)">
+<g id="Coinflow Lock up">
 <g id="Logotype">
 </g>
 <path id="Logo Mark" d="M16.2495 10.3033C15.9171 10.6356 15.3786 10.6356 15.0462 10.3033L11.3978 6.65685L9.00262 4.2626C8.34452 3.60476 7.27804 3.60476 6.61995 4.2626L6.55544 4.32709C6.36191 4.52054 6.21885 4.7582 6.13717 5.01926C4.92502 8.88624 4.93543 13.0366 6.16994 16.8984C6.25214 17.1559 6.39417 17.3909 6.58561 17.5818C7.92886 18.9245 9.26118 17.302 10.1653 16.3685C11.3645 15.1314 12.6952 13.9738 14.2887 13.2764C15.4998 12.7465 16.9299 12.7241 18.2082 12.9904C19.4494 13.2488 21.1095 13.8032 21.1178 15.3092C21.1204 15.7949 20.9784 16.2697 20.8036 16.7227C20.5674 17.3337 20.1741 18.1101 19.4104 18.0597C19.1134 18.0399 18.8298 17.9333 18.5364 17.8844C17.973 17.7903 17.394 17.912 16.855 18.1008C15.7402 18.4908 14.7486 19.158 13.7175 19.7337C12.0148 20.6853 10.1882 21.2049 8.34608 20.2891C7.62504 19.9308 7.1329 19.3868 6.57729 18.8314L3.74097 15.9957C3.46005 15.7148 3.17912 15.434 2.89819 15.1532L0.956159 13.2119C-0.318415 11.9378 -0.318415 9.87171 0.956159 8.5971L2.89767 6.65633L7.14694 2.40764L7.14591 2.40972C7.14591 2.40972 7.14747 2.40816 7.14694 2.40764L8.25348 1.30152C9.9895 -0.43384 12.8045 -0.43384 14.5405 1.30152L15.6471 2.40764L19.7429 6.5024C19.8277 6.58716 19.8277 6.72497 19.7429 6.80974L16.249 10.3023L16.2495 10.3033Z" fill="black"/>
@@ -13,22 +13,4 @@
 <path id="Subtract" d="M70.5972 2.47507C71.1072 2.47512 71.571 2.5612 71.9888 2.73289L71.7358 4.28953C71.3273 4.12698 70.9593 4.04639 70.6323 4.04636C69.3141 4.04636 68.5548 4.76386 68.355 6.19968L68.3013 6.60496H71.3208L71.0913 8.05222H68.0718L66.8892 16.0659H65.1938L66.3774 8.05222H64.7524L64.9644 6.60496H66.606L66.6948 5.96921C66.8478 4.87522 67.2744 4.01957 67.9751 3.40183C68.6753 2.78406 69.5494 2.47507 70.5972 2.47507ZM73.0688 16.0659H71.3735L73.3687 2.70457H75.064L73.0688 16.0659Z" fill="black"/>
 </g>
 </g>
-<defs>
-<filter id="filter0_n_0_152" x="0.000228882" y="0" width="99.6427" height="20.767" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-<feTurbulence type="fractalNoise" baseFrequency="3.3333332538604736 3.3333332538604736" stitchTiles="stitch" numOctaves="3" result="noise" seed="3152" />
-<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
-<feComponentTransfer in="alphaNoise" result="coloredNoise1">
-<feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
-</feComponentTransfer>
-<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
-<feFlood flood-color="rgba(0, 0, 0, 0.55)" result="color1Flood" />
-<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
-<feMerge result="effect1_noise_0_152">
-<feMergeNode in="shape" />
-<feMergeNode in="color1" />
-</feMerge>
-</filter>
-</defs>
 </svg>

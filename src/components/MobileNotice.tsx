@@ -6,23 +6,21 @@
  * the product frosted over with a note instead of a rough approximation of it.
  *
  * A viewport gate, not a device gate: pure CSS, no user-agent sniffing, so it
- * can never disagree with what the browser is actually able to show. The frost
- * is `backdrop-filter` rather than a blur on the page itself — blurring an
- * ancestor would make it the containing block for the sticky sidebar and every
- * fixed overlay underneath.
+ * can never disagree with what the browser is actually able to show.
  *
- * The frost and the note are two sibling layers, and the frost layer is
- * deliberately childless. An element carrying a backdrop-filter is promoted to
- * its own composited layer, and WebKit in particular rasterises that layer's
- * subtree along with the effect — which softens vector and text children on a
- * high-DPR screen. Keeping the note in a sibling above the frost means nothing
- * that has to stay sharp ever sits inside a filtered element.
+ * The blur itself lives on the content wrapper in the layout, not here. This
+ * started as `backdrop-filter` on this layer, which reads better in principle —
+ * but measured in WebKit it computes to blur(18px) and then paints nothing,
+ * leaving the whole dashboard legible through the note. A compositor effect
+ * cannot be what stands between a reviewer and an unfinished layout. This layer
+ * is now just the wash that lifts the note off the blurred page, and it stays
+ * childless so nothing that must render sharp sits inside a filtered element.
  */
 export function MobileNotice() {
   return (
     <>
       <div
-        className="fixed inset-0 z-40 hidden bg-paper/72 backdrop-blur-[18px] max-sm:block"
+        className="fixed inset-0 z-40 hidden bg-paper/60 max-sm:block"
         aria-hidden="true"
       />
       <div

@@ -142,5 +142,13 @@ would pin markup without measuring what that work actually verified.
   `svg { display: block }` normalizes. 36px of anti-aliasing total.
 - One sub-glyph AA cluster in the chart's delta row at 1728px (bounding boxes
   identical; rasterization jitter). 30px.
+- The sidebar lockup, 419px at 1321 and 520px at 1728, both inside the logo's own
+  bounding box. Deliberate: `coinflow-lockup.svg` carried a Figma noise filter —
+  fractal grain flooded 55% black over an already-black mark, invisible at every
+  size the logo is used. WebKit rasterises a filtered SVG at roughly CSS-pixel
+  resolution and upscales, so on a high-DPR screen it made the logo visibly
+  blurry (measured: 3.91px mean edge transition against Chrome's 1.22px; 1.20px
+  once removed). The delta at 1x is that grain disappearing, and the mark is
+  slightly cleaner for it.
 
 Everything else — 2.85M rendered pixels across both reference widths — is unchanged.
