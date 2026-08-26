@@ -1,34 +1,16 @@
 /**
  * Root layout — the document shell every route renders inside.
  *
- * This is the only place the two licensed local faces are registered with
- * next/font, so they are self-hosted and preloaded rather than fetched at
- * runtime. Nothing else in the app declares a font.
+ * Fonts come from the generated module in src/fonts (see
+ * scripts/setup-fonts.mjs): with the licensed woff2 files present it
+ * registers Swift and Acid Grotesk through next/font — self-hosted and
+ * preloaded — and without them it registers nothing, letting the native
+ * stacks in tokens.css carry the dashboard. Nothing else declares a font.
  */
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import { fontClasses } from "@/fonts";
 import { MobileNotice } from "@/components/MobileNotice";
-
-const swift = localFont({
-  src: [
-    { path: "../fonts/swift-regular.woff2", weight: "400", style: "normal" },
-    { path: "../fonts/swift-bold.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-swift",
-  display: "block",
-  fallback: ["Georgia", "Times New Roman", "serif"],
-});
-
-const acid = localFont({
-  src: [
-    { path: "../fonts/acid-grotesk-regular.woff2", weight: "400", style: "normal" },
-    { path: "../fonts/acid-grotesk-medium.woff2", weight: "500", style: "normal" },
-  ],
-  variable: "--font-acid",
-  display: "block",
-  fallback: ["Helvetica Neue", "Arial", "sans-serif"],
-});
 
 export const metadata: Metadata = {
   title: "Coinflow — Merchant Home",
@@ -60,7 +42,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${swift.variable} ${acid.variable}`}>
+    <html lang="en" className={fontClasses || undefined}>
       <body>
         {/* Below sm the dashboard is blurred behind MobileNotice. The blur sits
             on the content rather than on the note's backdrop: `backdrop-filter`

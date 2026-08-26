@@ -56,7 +56,34 @@
   --r-control: 1px;
   --r-frame: 2px;
 
-  /* ---- type families (set by next/font in the layout) ---- */
-  --serif: var(--font-swift), Georgia, "Times New Roman", serif;
-  --sans: var(--font-acid), "Helvetica Neue", Arial, sans-serif;
+  /* ---- type families ----
+     --font-swift / --font-acid are set by next/font when the licensed files
+     exist at build time (see scripts/setup-fonts.mjs); otherwise they are
+     unset and the var() defaults below carry the native stacks. The stacks
+     MUST live inside var(): with an unset custom property, `var(--x), Georgia`
+     invalidates the entire font-family at computed-value time — the trailing
+     list never applies.
+     Serif stand-ins for Swift, best first: Charter (Matthew Carter's sturdy
+     screen serif, ships on macOS/iOS and most Linuxes — the closest native
+     cousin, lining figures), Cambria (Windows, screen-tuned, lining figures),
+     Noto Serif (Android). Georgia sits late: its oldstyle figures are wrong
+     for money. The sans falls back to each platform's UI grotesk. */
+  --serif: var(
+      --font-swift,
+      Charter,
+      "Bitstream Charter",
+      "Iowan Old Style",
+      Cambria,
+      "Noto Serif",
+      Georgia
+    ),
+    Georgia, "Times New Roman", serif;
+  --sans: var(
+      --font-acid,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      Roboto
+    ),
+    "Helvetica Neue", Arial, sans-serif;
 }

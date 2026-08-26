@@ -3,9 +3,9 @@
 A payments-dashboard homepage rebuilt pixel-faithfully from a Figma comp, shipped as a
 production Next.js app. **Live:** https://coinflow-app-jade.vercel.app
 
-> **Building it?** The licensed typefaces are not in this repo. See
-> [Fonts](#fonts) first — `npm run build` fails at the font import without them.
-> `npm test` runs clean regardless.
+> **Building it?** Clone, `npm install`, `npm run build` — it works out of the
+> box. The licensed typefaces are not in this repo; without them the build
+> automatically uses native fallback stacks (see [Fonts](#fonts)).
 
 This was built twice. The first pass used CSS Modules with design-token custom
 properties; the shipped app is a strict syntax migration of it to Tailwind v4 +
@@ -91,8 +91,17 @@ anti-aliasing against the frame's JPEG-scaled image.
 ### Fonts
 
 Swift and Acid Grotesk are licensed commercial typefaces, so their binaries are
-**not** in this repo. `src/fonts/` is gitignored and the build expects four
-files there:
+**not** in this repo — and the build does not need them. On every install,
+build, and dev run, `scripts/setup-fonts.mjs` generates `src/fonts/index.ts`:
+
+- **Licensed files present** (all four below in `src/fonts/`): registered
+  through `next/font/local`, self-hosted and preloaded — what production runs.
+- **Absent** (a fresh clone): nothing is registered, and the font tokens in
+  `src/styles/tokens.css` fall back to the best native faces per platform —
+  Charter / Cambria / Noto Serif standing in for Swift (all with the lining
+  figures money needs; Georgia is deliberately last, its oldstyle figures are
+  not), and the system UI grotesk (SF, Segoe UI, Roboto) for Acid Grotesk.
+  Fully functional, and honestly close.
 
 ```
 src/fonts/swift-regular.woff2
@@ -101,9 +110,11 @@ src/fonts/acid-grotesk-regular.woff2
 src/fonts/acid-grotesk-medium.woff2
 ```
 
-Supply your own licensed copies, or point `localFont` in `src/app/layout.tsx`
-at substitutes. Without them `next build` fails at the font import — that is
-the intended failure, not a misconfiguration.
+Drop licensed copies in and rebuild to get the real faces; nothing else
+changes. The fallback stacks live in `tokens.css` inside the `var()` defaults
+— they must, because a `font-family` whose first entry is an unset custom
+property is invalid in its entirety, so a trailing fallback list would never
+apply.
 
 ```bash
 npm install
