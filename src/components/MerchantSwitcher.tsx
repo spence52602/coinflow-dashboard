@@ -1,6 +1,8 @@
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
+import { Check, Copy, Plus, Settings2 } from "lucide-react";
 import type { Merchant } from "@/data/types";
 import {
   DropdownMenu,
@@ -12,12 +14,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IconChevron } from "./icons";
+import { copyText } from "@/lib/export";
 
 interface MerchantSwitcherProps {
   merchant: Merchant;
 }
 
+const menuIcon = "h-[0.9rem] w-[0.9rem] text-icon-rail";
+
 export function MerchantSwitcher({ merchant }: MerchantSwitcherProps) {
+  const [copied, setCopied] = React.useState(false);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -62,7 +69,33 @@ export function MerchantSwitcher({ merchant }: MerchantSwitcherProps) {
           {merchant.displayId}
         </DropdownMenuCheckboxItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Manage merchants</DropdownMenuItem>
+        <DropdownMenuItem
+          onSelect={(e) => {
+            e.preventDefault();
+            void copyText(merchant.displayId).then((ok) => {
+              if (ok) {
+                setCopied(true);
+                window.setTimeout(() => setCopied(false), 1600);
+              }
+            });
+          }}
+        >
+          {copied ? (
+            <Check className={menuIcon} aria-hidden="true" />
+          ) : (
+            <Copy className={menuIcon} aria-hidden="true" />
+          )}
+          {copied ? "Copied" : "Copy merchant ID"}
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Settings2 className={menuIcon} aria-hidden="true" />
+          Merchant settings
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <Plus className={menuIcon} aria-hidden="true" />
+          Add merchant
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

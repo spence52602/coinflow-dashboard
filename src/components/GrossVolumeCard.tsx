@@ -5,6 +5,8 @@ import type { VolumePoint, VolumeRange, VolumeSummary } from "@/data/types";
 import { formatAxisK, formatCurrency, formatTick } from "@/data/format";
 import { IconArrowUp, IconChevronWide, IconFilter } from "./icons";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { ArrowUpRight, Copy, Download } from "lucide-react";
+import { copyText, downloadSeriesCsv, volumeSummaryText } from "@/lib/export";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -142,11 +144,34 @@ export function GrossVolumeCard({ volume, initialRange }: GrossVolumeCardProps) 
               </span>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Chart</DropdownMenuLabel>
-              <DropdownMenuItem>Export chart data</DropdownMenuItem>
-              <DropdownMenuItem>View in Reports</DropdownMenuItem>
+              <DropdownMenuLabel>Gross volume</DropdownMenuLabel>
+              <DropdownMenuItem
+                onSelect={() => downloadSeriesCsv(series, range)}
+              >
+                <Download className="h-[0.9rem] w-[0.9rem] text-icon-rail" aria-hidden="true" />
+                Download CSV
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onSelect={() => {
+                  void copyText(
+                    volumeSummaryText({
+                      periodLabel: range,
+                      total: volume.total,
+                      deltaAmount: volume.delta.amount,
+                      deltaPercent: volume.delta.percent,
+                      comparedTo: volume.delta.comparedTo,
+                    }),
+                  );
+                }}
+              >
+                <Copy className="h-[0.9rem] w-[0.9rem] text-icon-rail" aria-hidden="true" />
+                Copy summary
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Chart settings</DropdownMenuItem>
+              <DropdownMenuItem>
+                <ArrowUpRight className="h-[0.9rem] w-[0.9rem] text-icon-rail" aria-hidden="true" />
+                Open in Reports
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

@@ -23,6 +23,8 @@ export default function Page() {
           userFirstName={data.userFirstName}
           dateLine={data.dateLine}
           period={data.period}
+          volume={data.volume}
+          attention={data.attention}
         />
         <div className="grid min-h-0 flex-1 grid-cols-[58.5rem_25rem] gap-8 px-10 pb-[1.875rem] pt-[1.375rem] max-lg:grid-cols-1 max-lg:px-5 max-lg:pb-6 max-lg:pt-4">
           <main

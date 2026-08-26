@@ -1,19 +1,25 @@
-import type { Period } from "@/data/types";
-import { IconBell, IconCalendar, IconChevron, IconExport } from "./icons";
+import type { Attention, Period, VolumeSummary } from "@/data/types";
+import { IconChevron } from "./icons";
+import { HeaderActions } from "./HeaderActions";
 import { cn } from "@/lib/utils";
 
 interface PageHeaderProps {
   userFirstName: string;
   dateLine: string;
   period: Period;
+  volume: VolumeSummary;
+  attention: Attention;
 }
 
 const tabs = ["Overview", "Payments", "Payouts", "Customers"];
 
-const btnClass =
-  "inline-flex items-center gap-[0.4375rem] rounded-control border-[0.0625rem] border-rule bg-transparent px-[0.8125rem] py-[0.4375rem] font-sans text-[0.8125rem] font-medium text-ink";
-
-export function PageHeader({ userFirstName, dateLine, period }: PageHeaderProps) {
+export function PageHeader({
+  userFirstName,
+  dateLine,
+  period,
+  volume,
+  attention,
+}: PageHeaderProps) {
   return (
     <header className="px-10 pt-[1.875rem] max-lg:px-5 max-lg:pt-5">
       <div className="flex items-start justify-between gap-6 max-lg:flex-col">
@@ -23,38 +29,7 @@ export function PageHeader({ userFirstName, dateLine, period }: PageHeaderProps)
             {dateLine}
           </div>
         </div>
-        <div className="flex items-center gap-2 pt-1">
-          <button
-            className={cn(btnClass, "font-serif font-normal tracking-normal tabular-nums")}
-            type="button"
-          >
-            <span className="block h-[0.9rem] w-[0.9rem] text-icon-rail" aria-hidden="true">
-              <IconCalendar />
-            </span>
-            {period.label}
-            <span
-              className="ml-[0.0625rem] block h-[0.975rem] w-[0.975rem] text-icon-chevron"
-              aria-hidden="true"
-            >
-              <IconChevron style={{ transform: "rotate(90deg)" }} />
-            </span>
-          </button>
-          <button className={btnClass} type="button">
-            <span className="block h-[0.9rem] w-[0.9rem] text-icon-rail" aria-hidden="true">
-              <IconExport />
-            </span>
-            Export
-          </button>
-          <button
-            className="flex h-8 w-8 items-center justify-center rounded-control border-[0.0625rem] border-rule bg-transparent"
-            type="button"
-            aria-label="Notifications"
-          >
-            <span className="block h-[0.9rem] w-[0.9rem] text-icon-rail" aria-hidden="true">
-              <IconBell />
-            </span>
-          </button>
-        </div>
+        <HeaderActions period={period} volume={volume} attention={attention} />
       </div>
       <nav
         className="mt-[1.375rem] flex items-center justify-between border-b-[0.0625rem] border-rule max-lg:overflow-x-auto"

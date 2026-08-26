@@ -25,7 +25,7 @@ export function RecentPurchases({ purchases }: RecentPurchasesProps) {
             <IconChevronHeavy />
           </span>
         </span>
-        <PurchasesMenu />
+        <PurchasesMenu purchases={purchases} />
       </div>
 
       <div className="mt-4" role="table" aria-label="Recent purchases">
