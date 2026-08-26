@@ -2,6 +2,7 @@
 
 import type { StatSummary } from "@/data/types";
 import { IconArrowUpRight } from "./icons";
+import { sparkPath } from "@/lib/spark";
 import {
   Tooltip,
   TooltipContent,
@@ -11,30 +12,6 @@ import {
 
 interface StatRowProps {
   stats: StatSummary[];
-}
-
-/** Smooth sparkline path from a series (base design's easing kept). */
-function sparkPath(vals: number[], w: number, h: number, pad: number): string {
-  const lo = Math.min(...vals);
-  const hi = Math.max(...vals);
-  const n = vals.length;
-  const xy = (i: number, v: number): [number, number] => [
-    i * (w / (n - 1)),
-    pad + (h - pad * 2) * (1 - (v - lo) / (hi - lo || 1)),
-  ];
-  let d = "";
-  let prev: [number, number] | null = null;
-  vals.forEach((v, i) => {
-    const [x, y] = xy(i, v);
-    if (i === 0) {
-      d = `M${x.toFixed(1)},${y.toFixed(1)}`;
-    } else if (prev) {
-      const cx = (prev[0] + x) / 2;
-      d += ` C${cx.toFixed(1)},${prev[1].toFixed(1)} ${cx.toFixed(1)},${y.toFixed(1)} ${x.toFixed(1)},${y.toFixed(1)}`;
-    }
-    prev = [x, y];
-  });
-  return d;
 }
 
 export function StatRow({ stats }: StatRowProps) {
