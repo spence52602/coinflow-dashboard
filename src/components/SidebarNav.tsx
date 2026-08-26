@@ -51,6 +51,7 @@ export function SidebarNav({ exceptionsCount, attention }: SidebarNavProps) {
       icon: IconPayments,
       children: [
         { label: "Transactions" },
+        { label: "Subscriptions" },
         { label: "Disputes" },
         { label: "Refunds" },
       ],
@@ -61,6 +62,7 @@ export function SidebarNav({ exceptionsCount, attention }: SidebarNavProps) {
       children: [
         { label: "Scheduled" },
         { label: "History" },
+        { label: "Balances" },
         { label: "Bank accounts" },
       ],
     },
@@ -91,6 +93,7 @@ export function SidebarNav({ exceptionsCount, attention }: SidebarNavProps) {
         { label: "API keys" },
         { label: "Webhooks" },
         { label: "Logs" },
+        { label: "Sandbox" },
       ],
     },
     {
@@ -99,6 +102,7 @@ export function SidebarNav({ exceptionsCount, attention }: SidebarNavProps) {
       children: [
         { label: "General" },
         { label: "Team" },
+        { label: "Branding" },
         { label: "Compliance" },
       ],
     },
