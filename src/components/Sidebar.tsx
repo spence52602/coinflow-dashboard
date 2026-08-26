@@ -46,7 +46,7 @@ const chevronClass = "block h-4 w-4 flex-[0_0_1rem] text-icon-chevron";
 
 export function Sidebar({ merchant, account, exceptionsCount }: SidebarProps) {
   return (
-    <aside className="flex w-[17.5rem] flex-[0_0_17.5rem] flex-col border-r-[0.0625rem] border-rule bg-chrome px-4 pb-[1.3125rem] pt-6 max-lg:w-full max-lg:flex-none max-lg:flex-row max-lg:items-center max-lg:gap-4 max-lg:border-b-[0.0625rem] max-lg:border-r-0 max-lg:px-5 max-lg:py-3">
+    <aside className="sticky top-0 flex h-screen w-[17.5rem] flex-[0_0_17.5rem] flex-col overflow-y-auto border-r-[0.0625rem] border-rule bg-chrome px-4 pb-[1.3125rem] pt-6 max-lg:static max-lg:h-auto max-lg:w-full max-lg:overflow-visible max-lg:flex-none max-lg:flex-row max-lg:items-center max-lg:gap-4 max-lg:border-b-[0.0625rem] max-lg:border-r-0 max-lg:px-5 max-lg:py-3">
       <div className="pb-[1.59rem] pl-[0.0625rem] pt-[0.625rem] max-lg:p-0">
         {/* Brand lockup — committed vector from the Figma file (178:6369). */}
         {/* eslint-disable-next-line @next/next/no-img-element -- fixed-size committed SVG */}

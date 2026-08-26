@@ -59,16 +59,30 @@ function yFor(amount: number): number {
   return PLOT.baseline - amount / PLOT.dollarsPerPx;
 }
 
-/** 30 bars = the comp's exact layout; other counts share span and fill ratio. */
+/**
+ * 30 bars = the comp's exact layout, frozen. Sparser ranges distribute slots
+ * across the same plot span but cap bar width (a lone day must read as a
+ * day's bar, not a wall), center bars in their slots, show a tick per day
+ * when they fit, and shrink the ground wash to the populated span.
+ */
 function layoutFor(n: number) {
   if (n === 30) {
-    return { slot: PLOT.slot, barW: PLOT.barW, tickEvery: 7 };
+    return {
+      slot: PLOT.slot,
+      barW: PLOT.barW,
+      offset: 0,
+      tickEvery: 7,
+      fade: PLOT.fade,
+    };
   }
   const slot = (PLOT.gridX1 - PLOT.runIn) / n;
+  const barW = Math.min(slot * (PLOT.barW / PLOT.slot), 34);
   return {
     slot,
-    barW: slot * (PLOT.barW / PLOT.slot),
-    tickEvery: Math.max(1, Math.ceil(n / 5)),
+    barW,
+    offset: (slot - barW) / 2,
+    tickEvery: n <= 10 ? 1 : Math.ceil(n / 5),
+    fade: { x: PLOT.runIn, y: PLOT.fade.y, w: n * slot, h: PLOT.fade.h },
   };
 }
 
@@ -78,7 +92,7 @@ export function GrossVolumeCard({ volume, initialRange }: GrossVolumeCardProps) 
     () => volume.series.slice(-rangeDays[range]),
     [volume.series, range],
   );
-  const { slot, barW, tickEvery } = layoutFor(series.length);
+  const { slot, barW, offset, tickEvery, fade } = layoutFor(series.length);
 
   const chartLabel =
     series.length > 0
@@ -184,10 +198,10 @@ export function GrossVolumeCard({ volume, initialRange }: GrossVolumeCardProps) 
           {/* The comp draws this gradient rect beneath the bars (Rectangle 34)
               — kept in the same z-position for fidelity. */}
           <rect
-            x={PLOT.fade.x}
-            y={PLOT.fade.y}
-            width={PLOT.fade.w}
-            height={PLOT.fade.h}
+            x={fade.x}
+            y={fade.y}
+            width={fade.w}
+            height={fade.h}
             fill="url(#gv-fade)"
           />
 
@@ -208,7 +222,7 @@ export function GrossVolumeCard({ volume, initialRange }: GrossVolumeCardProps) 
             return (
               <rect
                 key={point.date}
-                x={PLOT.runIn + i * slot}
+                x={PLOT.runIn + i * slot + offset}
                 y={top}
                 width={barW}
                 height={PLOT.baseline - top}
@@ -246,7 +260,7 @@ export function GrossVolumeCard({ volume, initialRange }: GrossVolumeCardProps) 
               i % tickEvery === 0 ? (
                 <text
                   key={point.date}
-                  x={PLOT.runIn + i * slot + barW / 2}
+                  x={PLOT.runIn + i * slot + offset + barW / 2}
                   y={PLOT.tickBaseline}
                   textAnchor="middle"
                 >

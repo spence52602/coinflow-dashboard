@@ -45,11 +45,11 @@ export function NextPayout({ payout }: NextPayoutProps) {
           <span>{payout.batchedPercent}% batched</span>
         </div>
         <a
-          className="mt-4 flex w-full items-center justify-center gap-[0.4375rem] rounded-control border-[0.0625rem] border-muted bg-transparent p-[0.6875rem] text-sm font-medium leading-[normal] text-ink no-underline"
+          className="mt-4 flex h-[2.4375rem] w-full items-center justify-center gap-[0.4375rem] rounded-control border-[0.0625rem] border-muted bg-transparent text-sm font-medium leading-[normal] text-ink no-underline"
           href="#"
         >
           Payout schedule
-          <span className="block h-[0.8125rem] w-[0.8125rem]" aria-hidden="true">
+          <span className="block h-[0.975rem] w-[0.975rem]" aria-hidden="true">
             <IconCtaArrow />
           </span>
         </a>
