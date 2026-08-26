@@ -43,7 +43,11 @@ export default function Page() {
             className="flex min-w-0 flex-col gap-5"
             aria-label="Overview"
           >
-            <GrossVolumeCard volume={data.volume} initialRange={data.activeRange} />
+            <GrossVolumeCard
+              volume={data.volume}
+              period={data.period}
+              initialRange={data.activeRange}
+            />
             <StatRow stats={data.stats} />
             <RecentPurchases purchases={data.purchases} />
           </main>

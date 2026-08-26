@@ -160,13 +160,37 @@ describe("volumeSummaryText", () => {
       volumeSummaryText({
         periodLabel: "Jul 2026",
         total: 50000,
-        deltaAmount: 1200,
-        deltaPercent: 2.4,
-        comparedTo: "Jun 2026",
+        delta: {
+          amount: 1200,
+          percent: 2.4,
+          direction: "up",
+          comparedTo: "Jun 2026",
+        },
       }),
     ).toBe(
       "Gross volume Jul 2026: $50,000.00 · up $1,200.00 (2.4%) vs. Jun 2026",
     );
+  });
+
+  it("says which way a period moved", () => {
+    expect(
+      volumeSummaryText({
+        periodLabel: "Jul 2026",
+        total: 50000,
+        delta: {
+          amount: 1200,
+          percent: -2.4,
+          direction: "down",
+          comparedTo: "Jun 2026",
+        },
+      }),
+    ).toContain("· down $1,200.00 (-2.4%)");
+  });
+
+  it("stops at the total when there is nothing to compare with", () => {
+    expect(
+      volumeSummaryText({ periodLabel: "All time", total: 50000, delta: null }),
+    ).toBe("Gross volume All time: $50,000.00");
   });
 });
 

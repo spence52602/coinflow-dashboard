@@ -6,21 +6,34 @@
  * is a change to getDashboardData alone.
  */
 import type { DashboardData, VolumePoint } from "./types";
+import rawHistory from "./volume-history.json";
 import rawSeries from "./volume-series.json";
 
 /**
  * Mock dashboard payload.
  *
- * The daily gross-volume series was extracted from the redesigned Gross
- * Volume card in the Figma file (values reconstructed from the drawn bar
- * heights against the $40K gridline spacing; weekends carry the lighter
- * tone). `volume.total` is the reported summary figure — the chart draws
- * the series, the headline prints the summary, matching how a real
- * summary + timeseries API pair behaves.
+ * The daily gross-volume series comes from two files that abut:
+ *
+ * - `volume-series.json` is the comp's own month (27 Jul – 25 Aug 2026),
+ *   reconstructed from the drawn bar heights in the Figma file against the
+ *   $40K gridline spacing, weekends carrying the lighter tone. It is the
+ *   frozen part — the 1M view is measured against it, so it is never
+ *   regenerated.
+ * - `volume-history.json` is this merchant's earlier trading, back to their
+ *   first processing day (1 Mar 2025). The frame only ever showed 30 days, so
+ *   without it 3M / YTD / ALL have nothing to aggregate. Rebuild it with
+ *   `node scripts/generate-volume-history.mjs`.
+ *
+ * `volume.total` is the reported summary figure — the chart draws the series,
+ * the headline prints the summary, matching how a real summary + timeseries
+ * API pair behaves.
  */
-const series: VolumePoint[] = (
-  rawSeries as Array<{ date: string; amount: number; weekend: boolean }>
-).map(({ date, amount, weekend }) => ({ date, amount, weekend }));
+type RawPoint = { date: string; amount: number; weekend: boolean };
+
+const series: VolumePoint[] = [
+  ...(rawHistory as RawPoint[]),
+  ...(rawSeries as RawPoint[]),
+].map(({ date, amount, weekend }) => ({ date, amount, weekend }));
 
 const data: DashboardData = {
   merchant: {

@@ -227,6 +227,21 @@
   to { height: 0; }
 }
 
+/* Bars settle in when the range changes — enough to read as a redraw rather
+   than a flicker, short enough not to delay the number underneath. */
+@keyframes chart-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@utility chart-in {
+  animation: chart-in 180ms ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
 @utility visually-hidden {
   position: absolute;
   width: 1px;

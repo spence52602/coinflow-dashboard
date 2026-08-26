@@ -44,17 +44,27 @@ to the Figma frame at its reference viewport. Below 1024px the layout restacks.
 
 - `src/data/` — typed domain model (`types.ts`) and one mock entry point,
   `getDashboardData()`. Components are props-driven; wiring a real API means replacing
-  that single function. The daily volume series was extracted from the comp's own chart
-  geometry; series and reported totals are separate fields, as a real
-  summary + timeseries API pair would be.
+  that single function. Series and reported totals are separate fields, as a real
+  summary + timeseries API pair would be. The daily volume series is two files that
+  abut: `volume-series.json` is the comp's own month, extracted from its chart
+  geometry and frozen; `volume-history.json` is the trading behind it, back to the
+  merchant's first processing day, rebuilt deterministically with
+  `node scripts/generate-volume-history.mjs`.
 - `src/components/` — server components by default; interactivity is isolated in small
   client islands (`MerchantSwitcher`, `SearchCommand` on ⌘K, `GrossVolumeCard`'s range
-  control, `PurchasesMenu`, `StatRow` tooltips).
+  control and chart readout, `PurchasesMenu`, `StatRow` tooltips).
 - `src/components/icons.tsx` — the comp's exact SVG path data, stroke-based on
   `currentColor`.
 - The chart is data-driven SVG in the comp's native 716-unit coordinate space; the
   30-day layout reproduces the comp verbatim, other ranges redistribute bars across the
-  same plot span.
+  same plot span. `lib/volume-range.ts` decides what a range means: 1D/1W/1M draw days,
+  3M draws thirteen whole weeks, YTD and ALL draw calendar months, and the headline,
+  delta and y-axis all follow. The axis is derived rather than fixed — its nice-number
+  ladder includes 4 so that the comp's own month still yields the comp's own
+  $40K/$80K/$120K gridlines, which a test pins. The reported range keeps the summary
+  endpoint's figures verbatim instead of recomputing them from the bars.
+- Pointing at the chart — hover, or focus it and use ←/→, Home/End, Esc — reads out the
+  bar under the cursor, with an `aria-live` announcement alongside.
 
 ## Provenance
 
@@ -107,10 +117,12 @@ showing up in review:
 | `data/format.ts` | Every number on screen passes through it; a dropped decimal or a timezone slip is invisible in a diff |
 | `lib/export.ts` | CSV row shape, quoting of comma-bearing fields, and filename sanitisation |
 | `lib/spark.ts` | Sparkline geometry — bounds, segment count, and the flat-series divide-by-zero guard |
+| `lib/volume-range.ts` | What each range window covers, how it buckets, and the axis it derives — the one control where a wrong answer still looks like a chart |
 | `lib/utils.ts` | That a later Tailwind class beats an earlier one, which is what makes `className` overrides work |
 
-29 tests; 100% of statements and functions on that surface. The one uncovered
-branch is an unreachable defensive guard in `sparkPath`.
+63 tests; 100% of statements, lines and functions on that surface. The two
+uncovered branches are unreachable defensive guards — one in `sparkPath`, one
+in the axis ladder's fallback step.
 
 The CSV tests capture Blob contents through a stubbed `URL.createObjectURL`
 rather than asserting on a download, since jsdom never performs one — what

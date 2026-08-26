@@ -5,7 +5,7 @@
  * to a Blob download. Nothing here touches the network, and no export is
  * generated server-side.
  */
-import type { DashboardData, VolumePoint } from "@/data/types";
+import type { DashboardData, VolumeDelta, VolumePoint } from "@/data/types";
 import { formatCurrency } from "@/data/format";
 
 
@@ -75,11 +75,13 @@ export function downloadReportCsv(data: {
 export function volumeSummaryText(data: {
   periodLabel: string;
   total: number;
-  deltaAmount: number;
-  deltaPercent: number;
-  comparedTo: string;
+  /** Null for a range with nothing before it — ALL, on a young account. */
+  delta: VolumeDelta | null;
 }) {
-  return `Gross volume ${data.periodLabel}: ${formatCurrency(data.total)} · up ${formatCurrency(data.deltaAmount)} (${data.deltaPercent}%) vs. ${data.comparedTo}`;
+  const head = `Gross volume ${data.periodLabel}: ${formatCurrency(data.total)}`;
+  if (!data.delta) return head;
+  const { direction, amount, percent, comparedTo } = data.delta;
+  return `${head} · ${direction} ${formatCurrency(amount)} (${percent}%) vs. ${comparedTo}`;
 }
 
 export async function copyText(text: string): Promise<boolean> {
