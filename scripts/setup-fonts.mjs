@@ -16,7 +16,7 @@
  * Drop licensed woff2 files into src/fonts/ and rebuild to switch up; the
  * module is regenerated on every install/build/dev, never edited by hand.
  */
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -30,6 +30,10 @@ const files = [
   "acid-grotesk-regular.woff2",
   "acid-grotesk-medium.woff2",
 ];
+/* A fresh clone has no src/fonts/ at all — every file in it is gitignored
+   and git does not track empty directories. */
+mkdirSync(FONTS, { recursive: true });
+
 const present = files.filter((f) => existsSync(join(FONTS, f)));
 const licensed = present.length === files.length;
 
