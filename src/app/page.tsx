@@ -17,6 +17,9 @@ export default function Page() {
         merchant={data.merchant}
         account={data.account}
         exceptionsCount={data.exceptionsCount}
+        purchases={data.purchases}
+        volume={data.volume}
+        period={data.period}
       />
       <div className="flex min-w-0 flex-1 flex-col">
         <PageHeader

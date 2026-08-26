@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { Account, Merchant } from "@/data/types";
+import type { Account, DashboardData, Merchant, Period, VolumeSummary } from "@/data/types";
 import {
   IconArrowUpRight,
   IconChevron,
@@ -21,6 +21,9 @@ interface SidebarProps {
   merchant: Merchant;
   account: Account;
   exceptionsCount: number;
+  purchases: DashboardData["purchases"];
+  volume: VolumeSummary;
+  period: Period;
 }
 
 const operateItems = [
@@ -44,7 +47,7 @@ const itemIconClass =
   "block h-[1.0625rem] w-[1.625rem] flex-[0_0_1.625rem] px-[0.28125rem] text-icon-sidebar";
 const chevronClass = "block h-4 w-4 flex-[0_0_1rem] text-icon-chevron";
 
-export function Sidebar({ merchant, account, exceptionsCount }: SidebarProps) {
+export function Sidebar({ merchant, account, exceptionsCount, purchases, volume, period }: SidebarProps) {
   return (
     <aside className="sticky top-0 flex h-screen w-[17.5rem] flex-[0_0_17.5rem] flex-col overflow-y-auto border-r-[0.0625rem] border-rule bg-chrome px-4 pb-[1.3125rem] pt-6 max-lg:static max-lg:h-auto max-lg:w-full max-lg:overflow-visible max-lg:flex-none max-lg:flex-row max-lg:items-center max-lg:gap-4 max-lg:border-b-[0.0625rem] max-lg:border-r-0 max-lg:px-5 max-lg:py-3">
       <div className="pb-[1.59rem] pl-[0.0625rem] pt-[0.625rem] max-lg:p-0">
@@ -58,7 +61,7 @@ export function Sidebar({ merchant, account, exceptionsCount }: SidebarProps) {
       </div>
 
       <MerchantSwitcher merchant={merchant} />
-      <SearchCommand />
+      <SearchCommand purchases={purchases} volume={volume} period={period} />
 
       <div className="px-[0.8125rem] pb-[0.5625rem] pt-[1.375rem] text-xs font-normal uppercase leading-[normal] tracking-[0.04em] text-subtle max-lg:hidden">
         Operate
