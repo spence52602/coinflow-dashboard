@@ -1,9 +1,9 @@
 /**
  * Desktop-only gate.
  *
- * This dashboard is a pixel-faithful rebuild of a 1728px comp. Below sm the
- * layout restacks, but it has never been given the same care, so a phone gets
- * the product frosted over with a note instead of a rough approximation of it.
+ * This dashboard is a pixel-faithful rebuild of a 1728px comp — a desktop
+ * design. Below sm the layout restacks, but that end was never in scope, so a
+ * phone gets the product frosted over with a note rather than an approximation.
  *
  * A viewport gate, not a device gate: pure CSS, no user-agent sniffing, so it
  * can never disagree with what the browser is actually able to show.
@@ -41,8 +41,9 @@ export function MobileNotice() {
           </h1>
           <p className="t-body mt-4 text-muted">
             This dashboard is a pixel-faithful rebuild of a 1728px Figma comp.
-            Due to time constraints I didn’t get to the mobile layout, and I’d
-            rather show you this than a rough version of the real thing.
+            The comp is a desktop design, so the build is one too — I’d rather
+            show you the real thing at full fidelity than an approximation of
+            it.
           </p>
           <p className="t-sm mt-6 text-muted">Open it on a wider screen.</p>
         </div>
