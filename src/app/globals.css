@@ -1,0 +1,223 @@
+@import "../styles/tokens.css";
+@import "tailwindcss";
+
+/*
+ * Tailwind v4 theme mapping — exposes the Coinflow tokens (tokens.css, the
+ * source of truth) as utilities. Names map 1:1; nothing is renamed and no
+ * new palette is introduced. shadcn's semantic names alias onto the same
+ * tokens at the bottom of the block.
+ */
+@theme inline {
+  /* ink */
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-inverse: var(--inverse);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+
+  /* surfaces */
+  --color-chrome: var(--chrome);
+  --color-solid: var(--solid);
+  --color-select: var(--select);
+
+  /* rules & borders */
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
+  --color-avatar-border: var(--avatar-border);
+
+  /* component color */
+  --color-icon-active: var(--icon-active);
+  --color-icon-sidebar: var(--icon-sidebar);
+  --color-icon-rail: var(--icon-rail);
+  --color-icon-chevron: var(--icon-chevron);
+  --color-avatar-bg: var(--avatar-bg);
+  --color-search-placeholder: var(--search-placeholder);
+  --color-merchant-label: var(--merchant-label);
+  --color-merchant-value: var(--merchant-value);
+  --color-onboarding-label: var(--onboarding-label);
+  --color-attn-label: var(--attn-label);
+  --color-attn-sub: var(--attn-sub);
+  --color-cta-on-dark: var(--cta-on-dark);
+  --color-seg-idle: var(--seg-idle);
+
+  /* chart */
+  --color-bar-weekday: var(--bar-weekday);
+  --color-bar-weekend: var(--bar-weekend);
+  --color-chart-grid: var(--chart-grid);
+  --color-chart-baseline: var(--chart-baseline);
+  --color-chart-axis: var(--chart-axis);
+  --color-delta-strong: var(--delta-strong);
+
+  /* shape */
+  --radius-control: var(--r-control);
+  --radius-frame: var(--r-frame);
+
+  /* families (set by next/font in the layout) */
+  --font-serif: var(--serif);
+  --font-sans: var(--sans);
+
+  /* ---- shadcn semantic aliases → Coinflow tokens (no new palette) ---- */
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-border: var(--rule);
+  --color-muted-foreground: var(--muted);
+  --color-popover: var(--paper);
+  --color-popover-foreground: var(--ink);
+  --color-accent: var(--solid);
+  --color-accent-foreground: var(--ink);
+  --radius: var(--r-control);
+}
+
+/*
+ * Root scaling: the dashboard is composed on a 1728px grid. 1rem = 16px at
+ * 1728; below that the root font-size tracks the viewport (16/1728 = 0.9259vw)
+ * so the whole composition scales linearly — at a 1321px viewport it renders
+ * pixel-identical to the reference frame. Capped at 16px above 1728. Tailwind's
+ * rem-based spacing inherits this fluid scaling by design — do not convert to px.
+ */
+@layer base {
+  html {
+    font-size: clamp(9.5px, 0.92593vw, 16px);
+    /* Preflight sets 1.5; the composition was built against browser-normal
+       line-heights wherever a component doesn't set its own. */
+    line-height: normal;
+  }
+
+  @media (max-width: 1023px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  html,
+  body {
+    background: var(--paper);
+  }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  /* One focus treatment for the whole app (native and Radix alike). */
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- type scale ----------
+   The full Coinflow type scale ships as semantic utilities; this page uses a
+   subset — the rest are the contract for future screens (see
+   COINFLOW-TYPE-SYSTEM.md). Ported 1:1 from the CSS Modules build; these stay
+   single classes by design — never flatten them into arbitrary values. */
+
+@utility t-h3 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.875rem; /* 30 */
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+@utility t-h4 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.375rem; /* 22 */
+  line-height: 1.26;
+  letter-spacing: -0.01em;
+}
+
+@utility t-title-plate {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.9375rem; /* 31 */
+  line-height: 1.1935; /* 37/31 */
+  letter-spacing: -0.015em;
+}
+
+@utility t-title-attn {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.4375rem; /* 23 */
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+@utility t-fig-hero {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 3.375rem; /* 54 — measured against the comp's figure */
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility t-fig-sm {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.375rem; /* 22 */
+  line-height: 1.26;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility t-fig-table {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 0.875rem; /* 14 */
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility t-body {
+  font-size: 0.9375rem; /* 15 */
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+@utility t-sm {
+  font-size: 0.8125rem; /* 13 */
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+@utility t-cap {
+  font-size: 0.875rem; /* 14 */
+  line-height: 1.4;
+}
+
+@utility t-cta {
+  font-weight: 500;
+  font-size: 0.875rem; /* 14 */
+  line-height: 1;
+}
+
+@utility t-nav {
+  font-weight: 500;
+  font-size: 0.8125rem; /* 13 */
+  line-height: 1.5;
+}
+
+@utility t-label {
+  font-weight: 500;
+  font-size: 0.75rem; /* 12 */
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@utility visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

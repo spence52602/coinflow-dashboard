@@ -1,0 +1,368 @@
+.side {
+  width: 17.5rem; /* 280 */
+  flex: 0 0 17.5rem;
+  background: var(--chrome);
+  border-right: 0.0625rem solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem 1.3125rem; /* 24 16 21 */
+}
+
+/* Brand lockup at (17, 34) in the comp; sized so the switcher below keeps
+   the base layout's position. */
+.brand {
+  padding: 0.625rem 0 1.59rem 0.0625rem; /* 10 0 25.4 1 */
+}
+
+.lockup {
+  display: block;
+  height: 1.6875rem; /* 27 */
+  width: auto;
+}
+
+/* ---------- merchant switcher ---------- */
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5625rem; /* 9 */
+  padding: 0.47rem 0.625rem 0.47rem 0.75rem; /* tuned: avatar grew to 27.5 */
+  border: 0.0625rem solid var(--rule);
+  border-radius: var(--r-control);
+  margin-bottom: 1.375rem; /* 22 */
+  text-align: left;
+  width: 100%;
+  background: none;
+}
+
+.switchAvatar {
+  position: relative;
+  width: 1.71875rem; /* 27.5 */
+  height: 1.71875rem;
+  flex: 0 0 1.71875rem;
+  border-radius: var(--r-control);
+  border: 0.03rem solid var(--avatar-border); /* hairline, as in the comp */
+  background: var(--avatar-bg);
+  overflow: hidden;
+  display: block;
+}
+
+.switchAvatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.switchInitials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--inverse);
+  font-size: 0.8125rem; /* 13 */
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.switchWho {
+  flex: 1;
+  min-width: 0;
+  display: block;
+}
+
+.switchLabel {
+  display: block;
+  font-size: 0.75rem; /* 12 */
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--merchant-label);
+  line-height: 1.35;
+  margin-bottom: 0.15rem;
+}
+
+.switchValue {
+  display: block;
+  font-size: 0.8125rem; /* 13 */
+  font-weight: 500;
+  color: var(--merchant-value);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.switchChevron {
+  width: 1rem; /* 16 */
+  height: 1rem;
+  flex: 0 0 1rem;
+  color: var(--icon-chevron);
+  display: block;
+}
+
+/* ---------- search ---------- */
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12 */
+  padding: 0.5625rem 0.625rem; /* 9 10 */
+  border: 0.0625rem solid var(--rule);
+  border-radius: var(--r-control);
+  margin-bottom: 1.625rem; /* 26 */
+  width: 100%;
+  background: none;
+  text-align: left;
+}
+
+.searchIcon {
+  width: 0.9rem; /* 14.4 */
+  height: 0.9rem;
+  flex: 0 0 0.9rem;
+  margin: 0 0.35rem;
+  color: var(--search-placeholder);
+  display: block;
+}
+
+.searchPlaceholder {
+  flex: 1;
+  font-size: 0.8125rem; /* 13 */
+  color: var(--search-placeholder);
+}
+
+.searchKbd {
+  font-size: 0.6875rem; /* 11 */
+  font-weight: 500;
+  color: var(--subtle);
+  border: 0.0625rem solid var(--rule);
+  border-radius: var(--r-control);
+  padding: 0.125rem 0.3125rem;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- nav ---------- */
+
+.group {
+  /* Both group labels carry the 22px top pad (matches the base render). */
+  padding: 1.375rem 0.8125rem 0.5625rem; /* 22 13 9 */
+  color: var(--subtle);
+  font-weight: 400;
+  font-size: 0.75rem; /* 12 */
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem; /* 1 */
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12 */
+  padding: 0.585rem 0.38rem 0.585rem 0.625rem; /* 9.4 6 9.4 10 */
+  color: var(--muted);
+  text-decoration: none;
+  position: relative;
+  border-radius: var(--r-control);
+}
+
+.itemIcon {
+  width: 1.625rem; /* slot 26 */
+  height: 1.0625rem; /* 17 */
+  flex: 0 0 1.625rem;
+  padding: 0 0.28125rem; /* centers the 17px glyph in the 26px slot */
+  color: var(--icon-sidebar);
+  display: block;
+}
+
+.itemLabel {
+  flex: 1;
+  font-weight: 500;
+  font-size: 0.8125rem; /* 13 */
+  letter-spacing: -0.005em;
+}
+
+.count {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 0.6875rem; /* 11 */
+  color: var(--ink);
+  border: 0.0625rem solid var(--rule);
+  border-radius: var(--r-control);
+  padding: 0.0625rem 0.3125rem;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.25;
+}
+
+.itemChevron {
+  width: 1rem; /* 16 */
+  height: 1rem;
+  flex: 0 0 1rem;
+  color: var(--icon-chevron);
+  display: block;
+}
+
+.itemActive {
+  background: var(--select);
+  color: var(--ink);
+}
+
+.itemActive .itemIcon {
+  color: var(--icon-active);
+}
+
+/* Active row bleeds to the window edge with a black edge bar (178:6384/6385). */
+.itemActive::before {
+  content: "";
+  position: absolute;
+  left: -1rem; /* across the sidebar padding */
+  top: 0;
+  bottom: 0;
+  width: 1rem;
+  background: var(--select);
+}
+
+.itemActive::after {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 0;
+  bottom: 0;
+  width: 0.16rem; /* ~2.6 visible of the 5.2 bar */
+  background: var(--ink);
+  border-radius: 0 var(--r-control) var(--r-control) 0;
+}
+
+/* ---------- foot ---------- */
+
+.foot {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.docs {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5625rem 0.625rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8125rem;
+}
+
+.docsExternal {
+  width: 1rem; /* 16 */
+  height: 1rem;
+  margin-left: auto;
+  flex: 0 0 1rem;
+  color: var(--icon-chevron);
+  display: block;
+}
+
+.me {
+  display: flex;
+  align-items: center;
+  gap: 0.5625rem;
+  padding: 0.6875rem 0.625rem 0.1875rem 0.47rem;
+  margin-top: 0.375rem;
+  border-top: 0.0625rem solid var(--rule);
+}
+
+.meAvatar {
+  position: relative;
+  width: 1.96875rem; /* 31.5 */
+  height: 1.96875rem;
+  flex: 0 0 1.96875rem;
+  border-radius: 0.09375rem; /* 1.5 */
+  border: 0.03rem solid var(--avatar-border); /* hairline */
+  overflow: hidden;
+  display: block;
+}
+
+.meAvatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.meText {
+  flex: 1;
+  min-width: 0;
+  display: block;
+}
+
+.meLabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  line-height: 1.35;
+}
+
+.meValue {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meOut {
+  width: 1.0625rem; /* 17 */
+  height: 1.0625rem;
+  flex: 0 0 1.0625rem;
+  color: var(--icon-chevron);
+  padding: 0;
+  display: block;
+  margin-top: 0.4rem; /* sits low, on the email line, as in the comp */
+}
+
+@media (max-width: 1023px) {
+  .side {
+    width: 100%;
+    flex: none;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-right: none;
+    border-bottom: 0.0625rem solid var(--rule);
+  }
+
+  .brand {
+    padding: 0;
+  }
+
+  .lockup {
+    height: 1.5rem;
+  }
+
+  .switch,
+  .search {
+    margin-bottom: 0;
+    width: auto;
+  }
+
+  .search,
+  .group,
+  .nav,
+  .foot {
+    display: none;
+  }
+}

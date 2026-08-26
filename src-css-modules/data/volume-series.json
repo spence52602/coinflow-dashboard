@@ -1,0 +1,182 @@
+[
+{
+"date": "2026-07-27",
+"amount": 95664.8,
+"weekend": false,
+"dow": "Mon"
+},
+{
+"date": "2026-07-28",
+"amount": 94565.44,
+"weekend": false,
+"dow": "Tue"
+},
+{
+"date": "2026-07-29",
+"amount": 101761.01,
+"weekend": false,
+"dow": "Wed"
+},
+{
+"date": "2026-07-30",
+"amount": 94902.77,
+"weekend": false,
+"dow": "Thu"
+},
+{
+"date": "2026-07-31",
+"amount": 107517.69,
+"weekend": false,
+"dow": "Fri"
+},
+{
+"date": "2026-08-01",
+"amount": 58584.28,
+"weekend": true,
+"dow": "Sat"
+},
+{
+"date": "2026-08-02",
+"amount": 58500.22,
+"weekend": true,
+"dow": "Sun"
+},
+{
+"date": "2026-08-03",
+"amount": 101845.07,
+"weekend": false,
+"dow": "Mon"
+},
+{
+"date": "2026-08-04",
+"amount": 106501.28,
+"weekend": false,
+"dow": "Tue"
+},
+{
+"date": "2026-08-05",
+"amount": 96258.71,
+"weekend": false,
+"dow": "Wed"
+},
+{
+"date": "2026-08-06",
+"amount": 108787.37,
+"weekend": false,
+"dow": "Thu"
+},
+{
+"date": "2026-08-07",
+"amount": 109634.55,
+"weekend": false,
+"dow": "Fri"
+},
+{
+"date": "2026-08-08",
+"amount": 61632.39,
+"weekend": true,
+"dow": "Sat"
+},
+{
+"date": "2026-08-09",
+"amount": 55113.68,
+"weekend": true,
+"dow": "Sun"
+},
+{
+"date": "2026-08-10",
+"amount": 119032.15,
+"weekend": false,
+"dow": "Mon"
+},
+{
+"date": "2026-08-11",
+"amount": 97951.98,
+"weekend": false,
+"dow": "Tue"
+},
+{
+"date": "2026-08-12",
+"amount": 104385.53,
+"weekend": false,
+"dow": "Wed"
+},
+{
+"date": "2026-08-13",
+"amount": 101253.36,
+"weekend": false,
+"dow": "Thu"
+},
+{
+"date": "2026-08-14",
+"amount": 102352.72,
+"weekend": false,
+"dow": "Fri"
+},
+{
+"date": "2026-08-15",
+"amount": 88469.23,
+"weekend": true,
+"dow": "Sat"
+},
+{
+"date": "2026-08-16",
+"amount": 63833.31,
+"weekend": true,
+"dow": "Sun"
+},
+{
+"date": "2026-08-17",
+"amount": 121402.28,
+"weekend": false,
+"dow": "Mon"
+},
+{
+"date": "2026-08-18",
+"amount": 109295.01,
+"weekend": false,
+"dow": "Tue"
+},
+{
+"date": "2026-08-19",
+"amount": 104469.58,
+"weekend": false,
+"dow": "Wed"
+},
+{
+"date": "2026-08-20",
+"amount": 100151.8,
+"weekend": false,
+"dow": "Thu"
+},
+{
+"date": "2026-08-21",
+"amount": 107432.53,
+"weekend": false,
+"dow": "Fri"
+},
+{
+"date": "2026-08-22",
+"amount": 75262.6,
+"weekend": true,
+"dow": "Sat"
+},
+{
+"date": "2026-08-23",
+"amount": 67474.22,
+"weekend": true,
+"dow": "Sun"
+},
+{
+"date": "2026-08-24",
+"amount": 120471.04,
+"weekend": false,
+"dow": "Mon"
+},
+{
+"date": "2026-08-25",
+"amount": 106417.23,
+"weekend": false,
+"dow": "Tue"
+}
+]

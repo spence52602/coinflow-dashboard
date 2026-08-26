@@ -1,0 +1,86 @@
+# Coinflow — Merchant Home
+
+A payments-dashboard homepage rebuilt pixel-faithfully from a Figma comp, shipped as a
+production Next.js app. **Live:** https://coinflow-app-jade.vercel.app
+
+Two complete implementations of the same rendered output live in this repo:
+
+| Directory | Stack | Status |
+| --- | --- | --- |
+| `src/` | **Tailwind v4 + shadcn/ui (Radix primitives, cva)** | the app that builds and deploys |
+| `src-css-modules/` | CSS Modules + design-token custom properties | kept as a reference artifact, excluded from the build |
+
+The Tailwind port was executed as a strict syntax migration: full-page screenshots at
+1728px and 1321px are checked into `ref/`, and the migrated app diffs against them at
+**0.003% of pixels** (three sub-glyph anti-aliasing clusters, documented below).
+
+## Stack
+
+- **Next.js 15** (App Router, React Server Components), TypeScript strict
+- **Tailwind CSS v4** — tokens exposed via `@theme inline`, the type scale as `@utility` classes
+- **shadcn/ui conventions** — hand-authored Radix primitives in `src/components/ui/`
+  (ToggleGroup, DropdownMenu, Dialog, cmdk Command, Tooltip), variants via `cva`
+- Self-hosted fonts (`next/font/local`): Swift (serif — headings and aligned figures)
+  and Acid Grotesk (sans — interface)
+
+## Design system
+
+`src/styles/tokens.css` is the single source of truth: ink/surface/rule colors, chart
+tones, and the two radii (`--r-control: 1px`, `--r-frame: 2px`). Tailwind maps them 1:1
+(`--chrome → bg-chrome`, `--rule → border-rule`); shadcn's semantic names
+(`--background`, `--border`, `--muted-foreground`, `--radius`) alias onto the same
+tokens — no second palette exists.
+
+The full Coinflow type scale ships as semantic utilities (`t-fig-hero`, `t-label`,
+`t-title-plate`, …) — single classes, never flattened into arbitrary values.
+
+**Fluid composition:** the page is composed on a 1728px grid with
+`html { font-size: clamp(9.5px, 0.92593vw, 16px) }`. Every dimension is rem-based, so
+the whole composition scales linearly across desktop widths and renders pixel-identical
+to the Figma frame at its reference viewport. Below 1024px the layout restacks.
+
+## Architecture
+
+- `src/data/` — typed domain model (`types.ts`) and one mock entry point,
+  `getDashboardData()`. Components are props-driven; wiring a real API means replacing
+  that single function. The daily volume series was extracted from the comp's own chart
+  geometry; series and reported totals are separate fields, as a real
+  summary + timeseries API pair would be.
+- `src/components/` — server components by default; interactivity is isolated in small
+  client islands (`MerchantSwitcher`, `SearchCommand` on ⌘K, `GrossVolumeCard`'s range
+  control, `PurchasesMenu`, `StatRow` tooltips).
+- `src/components/icons.tsx` — the comp's exact SVG path data, stroke-based on
+  `currentColor`.
+- The chart is data-driven SVG in the comp's native 716-unit coordinate space; the
+  30-day layout reproduces the comp verbatim, other ranges redistribute bars across the
+  same plot span.
+
+## Provenance
+
+The comp (a Figma frame layering hand-tweaks over an earlier HTML render) was
+reverse-engineered forensically — every overlay node cataloged, assets exported,
+bar values reconstructed from drawn geometry — then rebuilt and driven through
+adversarial review loops: 10 build/measure rounds and 15 fresh-context critics
+(blind A/B design judges, completeness sweeps, code audits). Final fidelity:
+6.12% pixel-difference against the reference bitmap, residual being
+anti-aliasing against the frame's JPEG-scaled image.
+
+## Development
+
+```bash
+npm install
+npm run dev        # develop
+npm run build      # production build
+npm run typecheck  # tsc --noEmit
+npm run lint       # eslint
+```
+
+## Known render deltas (Tailwind port vs. `ref/`)
+
+- Three rotated chevrons (merchant switcher, date chip, "Local time") sit ±2px: the
+  legacy build rendered them through an inline-svg quirk that Tailwind Preflight's
+  `svg { display: block }` normalizes. 36px of anti-aliasing total.
+- One sub-glyph AA cluster in the chart's delta row at 1728px (bounding boxes
+  identical; rasterization jitter). 30px.
+
+Everything else — 2.85M rendered pixels across both reference widths — is unchanged.

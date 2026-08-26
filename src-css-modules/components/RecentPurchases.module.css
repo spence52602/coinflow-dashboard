@@ -1,0 +1,213 @@
+.card {
+  background: var(--paper);
+  border: 0.0625rem solid var(--rule);
+  padding: 1.25rem 1.5rem; /* 20 24 */
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.labelChevron {
+  width: 0.6875rem; /* 11 */
+  height: 0.6875rem;
+  color: var(--subtle);
+  display: block;
+}
+
+.dots {
+  width: 1.625rem;
+  height: 1.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.dotsIcon {
+  width: 0.875rem; /* 14 */
+  height: 0.875rem;
+  opacity: 0.44;
+  display: block;
+}
+
+.table {
+  margin-top: 1rem; /* 16 */
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem; /* 14 */
+  padding: 0.5rem 0; /* 8 0 */
+  border-bottom: 0.0625rem solid var(--rule-soft);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.avatar {
+  position: relative;
+  width: 1.96875rem; /* 31.5 */
+  height: 1.96875rem;
+  flex: 0 0 1.96875rem;
+  border-radius: 0.09375rem; /* 1.5 */
+  border: 0.03rem solid var(--avatar-border); /* hairline, as in the comp */
+  background: var(--avatar-bg);
+  overflow: hidden;
+  display: block;
+}
+
+.avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarInitials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--inverse);
+  font-weight: 400;
+  font-size: 0.75625rem; /* 12.1 */
+  letter-spacing: 0.02em;
+}
+
+.name {
+  flex: 1;
+  min-width: 0;
+  display: block;
+}
+
+.nameA {
+  display: block;
+  font-size: 0.875rem; /* 14 */
+  color: var(--ink);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nameB {
+  display: block;
+  font-size: 0.75rem; /* 12 */
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.method {
+  width: 8.25rem; /* 132 */
+  flex: 0 0 8.25rem;
+  font-size: 0.8125rem; /* 13 */
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.fig {
+  font-family: var(--serif);
+  font-variant-numeric: tabular-nums;
+}
+
+.date {
+  width: 6.875rem; /* 110 */
+  flex: 0 0 6.875rem;
+  font-family: var(--serif);
+  font-size: 0.8125rem; /* 13 */
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+.status {
+  width: 5.75rem; /* 92 */
+  flex: 0 0 5.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  font-size: 0.6875rem; /* 11 */
+  font-weight: 500;
+  line-height: 1;
+  color: var(--muted);
+  border: 0.0625rem solid var(--rule);
+  border-radius: var(--r-control);
+  padding: 0.25rem 0.4375rem;
+  letter-spacing: 0.01em;
+}
+
+.chip i {
+  width: 0.25rem;
+  height: 0.25rem;
+  background: var(--ink);
+  border-radius: var(--r-control);
+  display: block;
+}
+
+.chipHollow i {
+  background: none;
+  border: 0.0625rem solid var(--subtle);
+}
+
+.amount {
+  width: 6.5rem; /* 104 */
+  flex: 0 0 6.5rem;
+  text-align: right;
+  color: var(--ink);
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.625rem;
+  padding-top: 0.625rem;
+  border-top: 0.0625rem solid var(--rule);
+}
+
+.foot a {
+  font-weight: 500;
+  font-size: 0.8125rem;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.footChevron {
+  width: 0.75rem;
+  height: 0.75rem;
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .method,
+  .date {
+    display: none;
+  }
+}
