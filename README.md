@@ -38,7 +38,10 @@ The full Coinflow type scale ships as semantic utilities (`t-fig-hero`, `t-label
 **Fluid composition:** the page is composed on a 1728px grid with
 `html { font-size: clamp(9.5px, 0.92593vw, 16px) }`. Every dimension is rem-based, so
 the whole composition scales linearly across desktop widths and renders pixel-identical
-to the Figma frame at its reference viewport. Below 1024px the layout restacks.
+to the Figma frame at its reference viewport. Below 1024px the layout restacks; below
+640px it is frosted over by `MobileNotice` instead — the comp is a desktop one and the
+phone layout has not been given the same care, so a phone gets an honest note rather
+than a rough approximation.
 
 ## Architecture
 

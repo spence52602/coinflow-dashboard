@@ -108,6 +108,18 @@
     cursor: pointer;
   }
 
+  /* Below sm the dashboard is frosted over by MobileNotice — the page behind
+     the note must not scroll out from under it. Written as max-width rather
+     than the range syntax to match the rule above: Lightning CSS drops
+     `(width < 40rem)` here without an error. 39.9375rem is Tailwind's `sm`
+     edge, so this and the component's `max-sm:` turn on together. */
+  @media (max-width: 39.9375rem) {
+    html,
+    body {
+      overflow: hidden;
+    }
+  }
+
   /* One focus treatment for the whole app (native and Radix alike). */
   :focus-visible {
     outline: 2px solid var(--ink);

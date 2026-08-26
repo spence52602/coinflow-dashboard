@@ -8,6 +8,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { MobileNotice } from "@/components/MobileNotice";
 
 const swift = localFont({
   src: [
@@ -60,7 +61,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${swift.variable} ${acid.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <MobileNotice />
+      </body>
     </html>
   );
 }
